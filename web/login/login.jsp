@@ -3,7 +3,8 @@
     Created on : Aug 19, 2022, 3:50:02 PM
     Author     : Dell
 --%>
-
+<%@page import = "java.sql.*" %>
+<%@page import = "java.io.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,8 +13,33 @@
         <title>JSP Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"></head>
     <body>
+        <%
+            String url = "jdbc:mysql://localhost:3306/credit_debit_system";
+            String name = "root";
+            String password = "";
+            String sql = "select * from userdata";
+             
+            try{
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Connection con = DriverManager.getConnection(url, name, password);
+            Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery(sql);
+             while(rs.next())
+             {
+             %>
+             <p style="border: 1px solid black" >Name:<%=rs.getString(1) %></p>
+             <%= rs.getString(2) %>
+             <%= rs.getString(3) %>
+             <%= rs.getString(4) %>
+             
+        <%
+            }
+            }catch(Exception e){
+            System.out.println("Error occured..."+e.getMessage());
+            }
+            %>
 
-        <section class="vh-100" style="background-color: #eee;">
+<!--        <section class="vh-100" style="background-color: #eee;">
             <div class="container h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col-lg-12 col-xl-11">
@@ -71,7 +97,8 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section>-->
+            
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
 </html>
