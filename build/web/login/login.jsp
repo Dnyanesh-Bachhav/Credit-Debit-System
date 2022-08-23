@@ -23,23 +23,23 @@
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Connection con = DriverManager.getConnection(url, name, password);
             Statement st = con.createStatement();
-             ResultSet rs = st.executeQuery(sql);
-             while(rs.next())
-             {
+            ResultSet rs = st.executeQuery(sql);
+//             while(rs.next())
+//             {
              %>
-             <p style="border: 1px solid black" >Name:<%=rs.getString(1) %></p>
+            <%-- <p style="border: 1px solid black" >Name:<%=rs.getString(1) %></p>
              <%= rs.getString(2) %>
              <%= rs.getString(3) %>
-             <%= rs.getString(4) %>
+             <%= rs.getString(4) %> --%>
              
         <%
-            }
+//            }
             }catch(Exception e){
             System.out.println("Error occured..."+e.getMessage());
             }
             %>
-
-<!--        <section class="vh-100" style="background-color: #eee;">
+        
+        <section class="vh-100" style="background-color: #eee;">
             <div class="container h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col-lg-12 col-xl-11">
@@ -50,23 +50,24 @@
 
                                         <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Login</p>
 
-                                        <form class="mx-1 mx-md-4">
-
+                                        <form class="mx-1 mx-md-4" action="../controller/loginController.jsp">
                                            
 
                                             <div class="d-flex flex-row align-items-center mb-2">
                                                 <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                                 <div class="form-outline flex-fill mb-0">
-                                                    <input type="email" id="form3Example3c" class="form-control" />
                                                     <label class="form-label" for="form3Example3c">Your Email</label>
+                                                    <input type="email" id="form3Example3c" name="email" class="form-control" />
+                                                    
                                                 </div>
                                             </div>
 
                                             <div class="d-flex flex-row align-items-center mb-2">
                                                 <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                                 <div class="form-outline flex-fill mb-0">
-                                                    <input type="password" id="form3Example4c" class="form-control" />
                                                     <label class="form-label" for="form3Example4c">Password</label>
+                                                    <input type="password" id="form3Example4c" name="password" class="form-control" />
+                                                    
                                                 </div>
                                             </div>
 
@@ -79,7 +80,7 @@
                                             </div>
 
                                             <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                                <button type="button" class="btn btn-primary btn-lg">Register</button>
+                                                <button type="submit" class="btn btn-primary btn-lg">Register</button>
                                             </div>
 
                                         </form>
@@ -97,8 +98,11 @@
                     </div>
                 </div>
             </div>
-        </section>-->
+        </section>
+            <script>
             
+        
+                </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
 </html>
