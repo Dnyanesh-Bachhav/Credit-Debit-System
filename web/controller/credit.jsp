@@ -40,12 +40,13 @@
         st1.setInt(3, credit_money);
         st1.setString(4, "credited");
         st1.setInt(5, balance);
-        st1.setInt(6, balance + credit_money);
+        balance = balance + credit_money;
+        st1.setInt(6, balance);
         
         int rows = st1.executeUpdate();
         sql = "update userdata set balance=? where username=?";
         PreparedStatement st2 = con.prepareStatement(sql);
-        st2.setInt(1,100000+credit_money);
+        st2.setInt(1,(balance + credit_money));
         st2.setString(2, session.getAttribute("email").toString());
         st2.executeUpdate();
         System.out.println("Money credited successfully...");

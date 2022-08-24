@@ -14,9 +14,10 @@
     String user_password = request.getParameter("password");
     System.out.println("Password: " + user_password);
     String email = request.getParameter("email");
+    int balance = Integer.parseInt(request.getParameter("balance"));
     String url = "jdbc:mysql://localhost:3306/credit_debit_system";
 
-    String sql = "insert into userdata(name,username,password) values(?,?,?)";
+    String sql = "insert into userdata(name,username,password,balance) values(?,?,?,?)";
 
     try {
         Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -25,6 +26,7 @@
         st.setString(1,user_name);
         st.setString(2, email);
         st.setString(3, user_password);
+        st.setInt(4,balance);
         int rows = st.executeUpdate();
         System.out.println("User added...!!!");
         response.sendRedirect("../index.html");

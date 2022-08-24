@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import = "java.sql.*" %>
 <%@page import = "java.io.*" %>
+<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,6 +29,7 @@
             Connection con = DriverManager.getConnection(url, name, password);
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
+            
 
         %>
         <div class="mt-5" style="display: flex;justify-content: center;align-items: center;">
@@ -45,19 +47,22 @@
                 </tr>
             </thead>
             <tbody>
-                <%                    
+                <%        
+                    
                     while (rs.next()) {
                 %>
                 <tr>
                     <td><%= count++%></td>
                     <td><%= rs.getString(4)%> <%= rs.getString(5) %>...</td>
                     <td><%= rs.getString(3)%></td>
-                    <td><%= rs.getInt(6)%></td>
+                    <td><%= rs.getInt(7)%></td>
 
                 </tr>
                 <%
                     }
+
                 %>
+            
             </tbody>
         </table>
             </div>

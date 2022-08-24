@@ -5,15 +5,35 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>HomePage</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     </head>
     <body>
-        <div>TODO write content</div>
-        <a href="./login/login.jsp" class="btn btn-primary" >Link</a>
-        <a href="./login/signup.jsp" class="btn btn-primary">Signup</a>
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#" style="margin-left: 50px;" >
+                    <img src="./assets/images/Bank_Logo.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
+                    Cred.IO
+                </a>
+                <div class="mr-5" style="margin-right: 50px;" >
+                    <a href="./login/login.jsp" class="btn btn-primary" >Sign in</a>
+                    <a href="./login/signup.jsp" class="btn btn-primary">Signup</a>
+                </div>
+            </div>
+        </nav>
+        <div class="container mt-5 text-center " >
+            <div style="display: block;" >
+            <img src="./assets/images/Bank_Logo.png" class="img-fluid" style="width: 150px;height: 150px;align-self: center;"  />
+           
+            <h3 class="mt-4">Fastest,trusted and secure online banking</h3>
+            <p class="mt-4">Experience the fastest,secure online banking.<br> Trusted by over millions+ users.<br> Be the part and experience the world that haven't you explored yet...</p>
+            <a href="./login/signup.jsp" class="mt-4 btn btn-outline-primary">Create Account</a>
+            </div>
+        </div>
+        <footer class=" bg-light p-2 text-black" style="  position: fixed;left: 0;bottom: 0;width: 100%;text-align: center;" >Copyright 2022&copy; All rights reserved.</footer>
+        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
 </html>
