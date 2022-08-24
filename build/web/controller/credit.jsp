@@ -7,15 +7,15 @@
 <%@page import="java.sql.*"%>
 <%@page import="java.time.*"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="mainController.connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    String database_user = "root";
-    String password = "";
+    
     int balance = 0;
     String sql2 = "select balance from userdata where username='"+session.getAttribute("email").toString()+"'";
     int  credit_money =  Integer.parseInt(request.getParameter("credit_money"));
     System.out.println("Name: " + credit_money);
-    String url = "jdbc:mysql://localhost:3306/credit_debit_system";
+    
 
     String sql = "insert into credit_data(username,date_time,money,status,previous_balance,total_balance) values(?,?,?,?,?,?)";
     LocalDateTime myDateObj = LocalDateTime.now();
@@ -26,7 +26,7 @@
 
     try {
         Class.forName("com.mysql.jdbc.Driver").newInstance();
-        Connection con = DriverManager.getConnection(url, database_user, password);
+        Connection con = DriverManager.getConnection(connection.url, connection.user, connection.password);
         // Get current balance
         PreparedStatement st = con.prepareStatement(sql2);
         ResultSet rs = st.executeQuery(sql2);

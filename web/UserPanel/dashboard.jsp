@@ -4,6 +4,7 @@
     Author     : Dell
 --%>
 <%@page import="java.sql.*" %>
+<%@page import="mainController.connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 <!DOCTYPE html>
@@ -14,22 +15,35 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"/>
     </head>
     <body>
+        <%
+            String sql = "select balance from userdata where username='" + session.getAttribute("email") + "'";
+
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Connection con = DriverManager.getConnection(connection.url, connection.user, connection.password);
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            rs.next();
+            int balance = rs.getInt(1);
+        %>
         <!--<h1>Hello World!</h1>-->
-        
+
         <nav class="navbar navbar-light bg-light">
             <div class="container-fluid ml-5">
                 <a class="navbar-brand " href="#">
                     <img src="../assets/images/Bank_Logo.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
                     <%= session.getAttribute("name").toString()%>
-                </a>
+                </a> 
                 <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal" class="btn btn-danger" style="margin-right: 50px;" >
-                    <i class="bi bi-box-arrow-right" style="width: 50px;height: 50px;"></i>
+
                     Logout
                 </a>
             </div>
         </nav>
-                <!--Modal Logout-->
-                        <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div style="display: flex;align-items: center; width: max-content;padding: 10px;border-radius: 10px;margin-left: 20px;" class="shadow mt-4">
+            <h2> Current Balance: </h2> <span class="fst-italic" style="font-weight: bold;font-size: 25px; margin-left: 20px;" > ₹<%= balance%> </span>
+        </div>
+        <!--Modal Logout-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form action="../controller/logout.jsp">
@@ -38,7 +52,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">  
-                             Are you sure you want to exit this session?
+                            Are you sure you want to exit this session?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

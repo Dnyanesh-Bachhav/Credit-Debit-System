@@ -1,12 +1,7 @@
-<%-- 
-    Document   : history
-    Created on : Aug 24, 2022, 12:53:04 AM
-    Author     : Dell
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import = "java.sql.*" %>
 <%@page import = "java.io.*" %>
+<%@page import = "mainController.connection"%>
 <%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 <!DOCTYPE html>
 <html>
@@ -20,13 +15,11 @@
             int count = 0;
         %>
         <%
-            String url = "jdbc:mysql://localhost:3306/credit_debit_system";
-            String name = "root";
-            String password = "";
-            String sql = "select * from credit_data";
+            
+            String sql = "select * from credit_data where username='"+session.getAttribute("email").toString()+"'";
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            Connection con = DriverManager.getConnection(url, name, password);
+            Connection con = DriverManager.getConnection(connection.url, connection.user, connection.password);
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             

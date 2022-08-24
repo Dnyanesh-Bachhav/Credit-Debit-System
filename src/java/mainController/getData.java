@@ -8,6 +8,6 @@ package mainController;
  *
  * @author Dell
  */
-public class loginCon {
+public class getData {
     
 }

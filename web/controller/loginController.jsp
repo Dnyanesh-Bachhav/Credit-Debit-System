@@ -6,18 +6,17 @@
 
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="mainController.connection"%>
 <%
-    String database_user = "root";
-    String password = "";
+    
     String user_password = request.getParameter("password");
     String email = request.getParameter("email");
-    String url = "jdbc:mysql://localhost:3306/credit_debit_system";
     boolean isLogin = false;
     String sql = "select * from userdata where username='"+email+"'";
 
     try {
         Class.forName("com.mysql.jdbc.Driver").newInstance();
-        Connection con = DriverManager.getConnection(url, database_user, password);
+        Connection con = DriverManager.getConnection(connection.url, connection.user, connection.password);
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(sql);
         

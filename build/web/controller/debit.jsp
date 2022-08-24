@@ -8,20 +8,18 @@
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="java.sql.*"%>
 <%@page import="java.io.*"%>
+<%@page import="mainController.connection" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    String database_user = "root";
-    String password = "";
+    
     int balance = 0;
     int debit_money = Integer.parseInt(request.getParameter("debit_money"));
     System.out.println("Name: " + debit_money);
-    String url = "jdbc:mysql://localhost:3306/credit_debit_system";
-
     String sql = "select balance from userdata where username='"+session.getAttribute("email").toString()+"'";
 
     try {
         Class.forName("com.mysql.jdbc.Driver").newInstance();
-        Connection con = DriverManager.getConnection(url, database_user, password);
+        Connection con = DriverManager.getConnection(connection.url, connection.user, connection.password);
             LocalDateTime myDateObj = LocalDateTime.now();
     DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
@@ -47,7 +45,7 @@
         st2.setInt(3, debit_money);
         st2.setString(4, "debited");
         st2.setInt(5, balance);
-        st2.setInt(6,balance-debit_money);
+        st2.setInt(6,(balance-debit_money));
         st2.executeUpdate();
 
         System.out.println("Money debited successfully...");
