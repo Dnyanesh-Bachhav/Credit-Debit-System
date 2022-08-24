@@ -57,7 +57,7 @@
                                                 <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                                 <div class="form-outline flex-fill mb-0">
                                                     <label class="form-label" for="form3Example3c">Your Email</label>
-                                                    <input type="email" id="form3Example3c" name="email" class="form-control" />
+                                                    <input type="email" id="form3Example3c" name="email" class="form-control" required />
                                                     
                                                 </div>
                                             </div>
@@ -66,7 +66,7 @@
                                                 <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                                 <div class="form-outline flex-fill mb-0">
                                                     <label class="form-label" for="form3Example4c">Password</label>
-                                                    <input type="password" id="form3Example4c" name="password" class="form-control" />
+                                                    <input type="password" id="form3Example4c" name="password" class="form-control" required />
                                                     
                                                 </div>
                                             </div>
