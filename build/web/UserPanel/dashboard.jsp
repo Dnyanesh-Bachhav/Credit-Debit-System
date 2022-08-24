@@ -9,36 +9,106 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Dashboard</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"/>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <!--<h1>Hello World!</h1>-->
         <h1>Dashboard...</h1>
         <p>Name: <%= session.getAttribute("name").toString()%></p>
-        <div class="container px-5" style="display: flex;justify-content: space-around;align-items: center;">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <button type="button" class="btn btn-primary">Primary</button>
-                </div>
-            </div>
-            <div class="card ml-2 " style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <button type="button" class="btn btn-primary">Primary</button>
-                </div>
-            </div>
-            <div class="card ml-2 " style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <button type="button" class="btn btn-primary" style="text-align: center;" >Primary</button>
+
+
+        <!-- Modal Credit -->
+        <div class="modal fade" id="creditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form action="../controller/credit.jsp">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Credit</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Enter Money to credit:</label>
+                                <input type="number" class="form-control" name="credit_money" id="recipient-name">
+                            </div>
+                            <div class="mb-3" hidden>
+                                <label for="recipient-name" class="col-form-label">Time:</label>
+                                <input type="number" class="form-control" name="time" id="date_time">
+                            </div>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                    </form>
                 </div>
             </div>
         </div>
+        
+        <!-- Modal Debit -->
+        <div class="modal fade" id="debitModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form action="../controller/debit.jsp">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Debit</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Enter Money to debit:</label>
+                                <input type="number" class="form-control" name="debit_money" id="recipient-name">
+                            </div>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container px-5" style="display: flex;justify-content: space-around;align-items: center;">
+            <div class="card text-center ml-2 pt-4" style="width: 18rem;display: flex;align-items: center;justify-content: center;">
+                <div style="width: 45%;height: 45%;" >
+                    <img src="../assets/images/incoming_payment.jpg" class="img-fluid" alt="History" style=" object-fit: contain;">
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <hr/>
+                    <button type="button" class="btn btn-primary" style="text-align: center;" onclick="setDate();" data-bs-toggle="modal" data-bs-target="#creditModal" >Credit</button>
+                </div>
+            </div>
+            <div class="card text-center ml-2 pt-4" style="width: 18rem;display: flex;align-items: center;justify-content: center;">
+                <img src="../assets/images/outgoing_payment.jpg" class=" img-fluid " alt="History" style="width: 45%;height: 45%;">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <hr/>
+                    <button type="button" class="btn btn-primary" style="text-align: center;" data-bs-toggle="modal" data-bs-target="#debitModal" >Debit</button>
+                </div>
+            </div>
+            <div class="card text-center ml-2 pt-4" style="width: 18rem;display: flex;align-items: center;justify-content: center;">
+                <img src="../assets/images/clock.png" class=" img-fluid " alt="History" style="width: 45%;height: 45%;">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <hr/>
+                    <a href="../UserPanel/history.jsp" class="btn btn-primary" style="text-align: center;">History</a>
+                </div>
+            </div>
+        </div>
+        <script>
+            function setDate(){
+            var d = new Date();
+            console.log("Date:" +d);
+            document.getElementById("date_time").innerHTML = d+"";  
+            }
+            
+        </script>
         <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
