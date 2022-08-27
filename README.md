@@ -1,4 +1,6 @@
 # Credit-Debit-System
+![HOME_PAGE](web/assets/images/Homepage.png)
+
 
 It is a credit-debit system in java,jsp,servlet,mysql,etc
 
