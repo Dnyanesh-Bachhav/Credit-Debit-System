@@ -2,7 +2,7 @@
 ![HOME_PAGE](web/assets/images/Homepage.png)
 
 
-It is a credit-debit system in java,jsp,servlet,mysql,etc
+It is a credit-debit system in java,jsp,servlet,mysql,bootstrap,etc
 
 To run this project on your machine follow below instructions:
 👉👉 Change database variables in src/mainController/connection.java file...
